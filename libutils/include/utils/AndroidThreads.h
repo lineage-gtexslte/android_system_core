@@ -79,7 +79,7 @@ extern void androidSetCreateThreadFunc(android_create_thread_fn func);
 // if the priority set failed, else another value if just the group set failed;
 // in either case errno is set.  Thread ID zero means current thread.
 extern int androidSetThreadPriority(pid_t tid, int prio);
-
+extern pid_t androidGetTid();
 // Get the current priority of a particular thread. Returns one of the
 // ANDROID_PRIORITY constants or a negative result in case of error.
 extern int androidGetThreadPriority(pid_t tid);

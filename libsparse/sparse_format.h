@@ -28,11 +28,13 @@ typedef struct sparse_header {
   __le32	total_blks;	/* total blocks in the non-sparse output image */
   __le32	total_chunks;	/* total chunks in the sparse input image */
   __le32	image_checksum; /* CRC32 checksum of the original data, counting "don't care" */
+  __le32  samsung_reserved;
 				/* as 0. Standard 802.3 polynomial, use a Public Domain */
 				/* table implementation */
 } sparse_header_t;
 
 #define SPARSE_HEADER_MAGIC	0xed26ff3a
+#define SAMSUNG_CHUNK_MAGIC 0xf7776f58
 
 #define CHUNK_TYPE_RAW		0xCAC1
 #define CHUNK_TYPE_FILL		0xCAC2
@@ -44,6 +46,7 @@ typedef struct chunk_header {
   __le16	reserved1;
   __le32	chunk_sz;	/* in blocks in output image */
   __le32	total_sz;	/* in bytes of chunk input file including chunk header and data */
+  __le32  samsung_magic;
 } chunk_header_t;
 
 /* Following a Raw or Fill or CRC32 chunk is data.
